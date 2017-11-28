@@ -7,7 +7,7 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
-import UserContainer from './containers/userContainer'
+import UserContainer from '../containers/userContainer'
 import TodoListContainer from '../containers/todoListContainer'
 
 const UserNavigator = StackNavigator({

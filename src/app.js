@@ -6,13 +6,12 @@
 
 import React from 'react';
 
-import PeopleComponent from './containers/peopleComponent'
-import UserContainer from './containers/userContainer'
+import UserNavigator from './navigator/userNavigator'
 
 export default class App extends React.Component {
     render() {
         return (
-            <UserContainer/>
+            <UserNavigator/>
         )
     }
 }

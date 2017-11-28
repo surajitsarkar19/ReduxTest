@@ -3,7 +3,7 @@
  * Company : Bitcanny Technologies Pvt. Ltd.
  * Email   : surajit@bitcanny.com
  */
-import { ADD_PERSON, DELETE_PERSON } from '../actions/constants';
+import { ADD_PERSON, DELETE_PERSON } from '../actions/peopleAction';
 
 //people structure : [{name:name}]
 

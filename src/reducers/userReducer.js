@@ -4,7 +4,7 @@
  * Email   : surajit@bitcanny.com
  */
 
-import { FETCH_USER, FETCH_USER_FINISHED } from '../actions/constants';
+import { FETCH_USER, FETCH_USER_FINISHED, SELECT_USER } from '../actions/userAction';
 
 const initialState = {
     data: [],
@@ -12,7 +12,7 @@ const initialState = {
     selectedUserId:-1
 };
 
-export default function peopleReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_USER:
             return {
@@ -30,6 +30,11 @@ export default function peopleReducer(state = initialState, action) {
                     }
                 }),
                 isFetching:false
+            };
+        case SELECT_USER:
+            return{
+                ...state,
+                selectedUserId:action.data
             };
         default:
             return state;

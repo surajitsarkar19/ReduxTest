@@ -3,7 +3,8 @@
  * Company : Bitcanny Technologies Pvt. Ltd.
  * Email   : surajit@bitcanny.com
  */
-import { ADD_PERSON, DELETE_PERSON } from './constants';
+export const ADD_PERSON = 'ADD_PERSON';
+export const DELETE_PERSON = 'DELETE_PERSON';
 
 export function addPerson(person) {
     return {

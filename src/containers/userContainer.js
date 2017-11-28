@@ -107,9 +107,6 @@ class UserComponent extends Component {
 
     componentDidMount() {
         this.props.getUser();
-        /*client = new HttpClient();
-        client.get("https://jsonplaceholder.typicode.com/users")
-            .then((data)=>console.log(data));*/
     }
 
     componentWillUnmount() {
@@ -128,7 +125,7 @@ class UserComponent extends Component {
                             user={item}
                             onItemClicked={(user) => {
                                 alert(user.name)
-                                //this.onSSIDSelected(ssid);
+                                this.props.dispatch(UserActions.selectUser(user.id))
                             }}
                         />
                     )}
