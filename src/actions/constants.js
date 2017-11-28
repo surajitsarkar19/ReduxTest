@@ -8,3 +8,4 @@ export const DELETE_PERSON = 'DELETE_PERSON';
 
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_USER_FINISHED = 'FETCH_USER_FINISHED';
+export const SELECT_USER = 'SELECT_USER';

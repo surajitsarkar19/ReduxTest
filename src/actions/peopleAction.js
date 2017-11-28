@@ -5,7 +5,7 @@
  */
 import { ADD_PERSON, DELETE_PERSON } from './constants';
 
-export function fetchUser(person) {
+export function addPerson(person) {
     return {
         type: ADD_PERSON,
         person,

@@ -6,8 +6,8 @@
 
 import React from 'react';
 import {bindActionCreators} from 'redux';
-import { connect } from 'react-redux';
-import { PeopleActions } from '../actions';
+import {connect} from 'react-redux';
+import {PeopleActions} from '../actions';
 
 import {
     StyleSheet,
@@ -26,14 +26,15 @@ class PeopleComponent extends React.Component {
         this.props.addPerson({
             name: this.state.inputValue,
         });
-        this.setState({ inputValue: '' });
+        this.setState({inputValue: ''});
     }
     deletePerson = (person) => {
         this.props.deletePerson(person)
     }
     updateInput = (inputValue) => {
-        this.setState({ inputValue })
+        this.setState({inputValue})
     }
+
     render() {
         return (
             <View style={styles.container}>
@@ -47,8 +48,7 @@ class PeopleComponent extends React.Component {
                 <TouchableHighlight
                     underlayColor="#ffa012"
                     style={styles.button}
-                    onPress={this.addPerson}
-                >
+                    onPress={this.addPerson}>
                     <Text style={styles.buttonText}>Add Person</Text>
                 </TouchableHighlight>
                 {
@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
         people: state.people
     }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     /*return {
         dispatchAddPerson: (person) => dispatch(addPerson(person)),
         dispatchdeletePerson: (person) => dispatch(deletePerson(person))

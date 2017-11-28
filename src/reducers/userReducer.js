@@ -6,39 +6,11 @@
 
 import { FETCH_USER, FETCH_USER_FINISHED } from '../actions/constants';
 
-/***
- *
- * [
-     {
-         "id": 1,
-         "name": "Leanne Graham",
-         "username": "Bret",
-         "email": "Sincere@april.biz",
-         "address": {
-             "street": "Kulas Light",
-             "suite": "Apt. 556",
-             "city": "Gwenborough",
-             "zipcode": "92998-3874",
-             "geo": {
-                 "lat": "-37.3159",
-                 "lng": "81.1496"
-             }
-         },
-         "phone": "1-770-736-8031 x56442",
-         "website": "hildegard.org",
-         "company": {
-             "name": "Romaguera-Crona",
-             "catchPhrase": "Multi-layered client-server neural-net",
-             "bs": "harness real-time e-markets"
-         }
-     },
- ]
- */
-
 const initialState = {
     data: [],
-    isFetching: false
-}
+    isFetching: false,
+    selectedUserId:-1
+};
 
 export default function peopleReducer(state = initialState, action) {
     switch (action.type) {
@@ -51,7 +23,12 @@ export default function peopleReducer(state = initialState, action) {
         case FETCH_USER_FINISHED:
             return {
                 ...state,
-                data:action.data.map((item,index)=>({key:index,ssid:item})),
+                data:action.data.map((item,index)=>{
+                    return{
+                        key:item.id,
+                        ...item
+                    }
+                }),
                 isFetching:false
             };
         default:

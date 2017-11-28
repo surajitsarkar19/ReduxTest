@@ -3,19 +3,28 @@
  * Company : Bitcanny Technologies Pvt. Ltd.
  * Email   : surajit@bitcanny.com
  */
-import { FETCH_USER, FETCH_USER_FINISHED } from './constants';
+import { FETCH_USER, FETCH_USER_FINISHED, SELECT_USER } from './constants';
 import HttpClient from '../api/httpClient'
 
-export function fetchUser() {
+function fetchUser() {
     return {
         type: FETCH_USER
     };
 }
 
-export function fetchUserCompleted(data) {
+function fetchUserCompleted(data) {
     return {
         type: FETCH_USER_FINISHED,
         data:data
+    }
+}
+
+export function selectUser(id) {
+    return (dispatch,getState)=>{
+        dispatch({
+            type: SELECT_USER,
+            data: id
+        })
     }
 }
 
