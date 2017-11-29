@@ -5,11 +5,22 @@
  */
 
 import React, {Component} from 'react'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 import {
     AppRegistry,
     StyleSheet,
-    View
+    View,
+    FlatList,
+    TouchableHighlight,
+    Text,
+    ActivityIndicator
 } from 'react-native';
+
+class TodoListItem extends Component{
+
+}
 
 export default class TodoListContainer extends Component {
 
@@ -29,6 +40,15 @@ export default class TodoListContainer extends Component {
 
         return (
             <View style={styles.container}>
+                <FlatList
+                    style={{margin: 5}}
+                    data={this.props.user.data}
+                    renderItem={({item}) => (
+                        <TodoListItem
+                            item={item}
+                        />
+                    )}
+                />
             </View>
         );
     }
@@ -42,3 +62,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     }
 });
+
+function mapStateToProps(state) {
+    return {
+        todo: state.todo
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(UserActions, dispatch);
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(TodoListContainer)

@@ -125,7 +125,7 @@ class UserComponent extends Component {
                             user={item}
                             onItemClicked={(user) => {
                                 alert(user.name)
-                                this.props.dispatch(UserActions.selectUser(user.id))
+                                this.props.selectUser(user.id)
                             }}
                         />
                     )}

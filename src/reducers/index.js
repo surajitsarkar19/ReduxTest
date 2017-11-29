@@ -6,9 +6,11 @@
 import { combineReducers } from "redux"
 import people from './peopleReducer'
 import user from './userReducer'
+import todo from './todoListReducer'
 
 // glue all the reducers together
 export default combineReducers({
     people,
-    user
+    user,
+    todo,
 })

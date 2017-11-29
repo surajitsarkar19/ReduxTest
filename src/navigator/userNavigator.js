@@ -6,9 +6,19 @@
 
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-
+import Color from '../utils/color'
 import UserContainer from '../containers/userContainer'
 import TodoListContainer from '../containers/todoListContainer'
+
+const navigationOptions = {
+    headerStyle: {
+        backgroundColor: Color.Blue_500
+    },
+    headerTitleStyle:{
+      color:Color.White
+    },
+    headerTitle: "ReduxTest"
+};
 
 const UserNavigator = StackNavigator({
     Home: {
@@ -17,6 +27,6 @@ const UserNavigator = StackNavigator({
     Profile: {
         screen: TodoListContainer,
     },
-});
+},{navigationOptions:navigationOptions});
 
 export default UserNavigator;

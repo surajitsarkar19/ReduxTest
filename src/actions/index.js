@@ -6,8 +6,10 @@
 
 import * as PeopleActions from './peopleAction'
 import * as UserActions from './userAction'
+import * as TodoListActions from './todoListAction'
 
 export {
     PeopleActions,
-    UserActions
+    UserActions,
+    TodoListActions
 }
