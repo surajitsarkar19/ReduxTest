@@ -7,8 +7,8 @@
 
 import HttpClient from '../api/httpClient'
 
-const FETCH_TODO_LIST = 'FETCH_TODO_LIST';
-const FETCH_TODO_LIST_FINISHED = 'FETCH_TODO_LIST_FINISHED';
+export const FETCH_TODO_LIST = 'FETCH_TODO_LIST';
+export const FETCH_TODO_LIST_FINISHED = 'FETCH_TODO_LIST_FINISHED';
 
 function fetchTodoListAction(id){
     return{

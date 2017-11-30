@@ -18,8 +18,16 @@ import {
     ActivityIndicator
 } from 'react-native';
 
-class TodoListItem extends Component{
+import {UserActions} from '../actions';
 
+class TodoListItem extends Component{
+    render(){
+        return(
+            <View>
+                <Text>{this.props.data.title}</Text>
+            </View>
+        );
+    }
 }
 
 export default class TodoListContainer extends Component {
@@ -65,7 +73,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        todo: state.todo
+        todo: state.todo,
+        userId: state.user.id
     }
 }
 
