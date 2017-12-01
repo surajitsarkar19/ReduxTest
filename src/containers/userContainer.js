@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 
 import Color from '../utils/color';
-
+import GlobalStyles from '../utils/globalStyle'
 
 class UserListItem extends Component {
 
@@ -73,19 +73,12 @@ class UserListItem extends Component {
                     }}>
 
                         <Text
-                            style={{
-                                fontWeight: 'bold',
-                                fontSize: 16,
-                                color: "#000000"
-                            }}>
+                            style={GlobalStyles.primaryText}>
                             {this.props.user.name}
                         </Text>
 
                         <Text
-                            style={{
-                                fontSize: 16,
-                                color: "#000000"
-                            }}>
+                            style={GlobalStyles.secondaryText}>
                             {this.props.user.email}
                         </Text>
 
@@ -100,17 +93,17 @@ class UserListItem extends Component {
 
 class UserComponent extends Component {
 
+    static navigationOptions = ({navigation}) => ({
+        headerTitle: "User List",
+    });
+
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {};
     }
 
     componentDidMount() {
         this.props.getUser();
-    }
-
-    componentWillUnmount() {
-
     }
 
     render() {
@@ -124,8 +117,8 @@ class UserComponent extends Component {
                         <UserListItem
                             user={item}
                             onItemClicked={(user) => {
-                                alert(user.name)
-                                this.props.selectUser(user.id)
+                                this.props.selectUser(user.id);
+                                this.onClickUser(user);
                             }}
                         />
                     )}
@@ -134,9 +127,14 @@ class UserComponent extends Component {
                     animating={this.props.user.isFetching}
                     color='#bc2b78'
                     size="large"
-                    style={styles.activityIndicator}/>
+                    style={GlobalStyles.activityIndicator}/>
             </View>
         );
+    }
+
+    onClickUser(user){
+        //alert(user.name)
+        this.props.navigation.navigate('Profile',{userId:user.id})
     }
 }
 
@@ -146,16 +144,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#F5FCFE',
     },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0
-    }
 });
 
 function mapStateToProps(state) {

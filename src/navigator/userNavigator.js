@@ -17,7 +17,8 @@ const navigationOptions = {
     headerTitleStyle:{
       color:Color.White
     },
-    headerTitle: "ReduxTest"
+    headerTitle: "ReduxTest",
+    headerTintColor: Color.white,
 };
 
 const UserNavigator = StackNavigator({

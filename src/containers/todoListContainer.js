@@ -18,26 +18,49 @@ import {
     ActivityIndicator
 } from 'react-native';
 
-import {UserActions} from '../actions';
+import {TodoListActions} from '../actions';
+import GlobalStyles from "../utils/globalStyle";
+import Color from '../utils/color'
+import {Card,Icon} from 'react-native-elements'
 
-class TodoListItem extends Component{
-    render(){
-        return(
-            <View>
-                <Text>{this.props.data.title}</Text>
-            </View>
+class TodoListItem extends Component {
+    render() {
+        let iconName = (this.props.item.completed)?"done":"remove";
+        let color = (this.props.item.completed)?Color.Green_500:Color.Red_500;
+        return (
+            <Card flexDirection='row'
+                  containerStyle={{
+                      margin: 5
+                  }}>
+                <Icon
+                    name={iconName}
+                    color={Color.Blue_500}
+                    size={30}
+                    style={{flex: 0.1}}/>
+                <Text style={{
+                    marginLeft:10,
+                    fontSize:16,
+                    color:color,
+                    textDecorationLine:(this.props.item.completed)?'line-through':'none'
+                }}>{this.props.item.title}</Text>
+            </Card>
         );
     }
 }
 
-export default class TodoListContainer extends Component {
+class TodoListContainer extends Component {
+
+    static navigationOptions = ({navigation}) => ({
+        headerTitle: "Todo List",
+    });
 
     constructor(props) {
         super(props)
     }
 
     componentDidMount() {
-
+        this.userId = this.props.navigation.state.params.userId;
+        this.props.fetchTodoList(this.userId);
     }
 
     componentWillUnmount() {
@@ -46,17 +69,23 @@ export default class TodoListContainer extends Component {
 
     render() {
 
+        let todoList = this.props.todo[this.userId];
         return (
             <View style={styles.container}>
                 <FlatList
                     style={{margin: 5}}
-                    data={this.props.user.data}
+                    data={(todoList) ? todoList.data : []}
                     renderItem={({item}) => (
                         <TodoListItem
                             item={item}
                         />
                     )}
                 />
+                <ActivityIndicator
+                    animating={(todoList) ? todoList.isFetching : true}
+                    color='#bc2b78'
+                    size="large"
+                    style={GlobalStyles.activityIndicator}/>
             </View>
         );
     }
@@ -73,13 +102,12 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        todo: state.todo,
-        userId: state.user.id
+        todo: state.todo
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(UserActions, dispatch);
+    return bindActionCreators(TodoListActions, dispatch);
 }
 
 export default connect(

@@ -12,30 +12,42 @@ const initialState = {
     selectedUserId:-1
 };
 
+function onFetchUser(state, action) {
+    return {
+        ...state,
+        data:[],
+        isFetching:true
+    };
+}
+
+function onUserFetchFinished(state, action) {
+    return {
+        ...state,
+        data:action.data.map((item,index)=>{
+            return{
+                key:item.id,
+                ...item
+            }
+        }),
+        isFetching:false
+    };
+}
+
+function onSelectUser(state, action) {
+    return{
+        ...state,
+        selectedUserId:action.data
+    };
+}
+
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_USER:
-            return {
-                ...state,
-                data:[],
-                isFetching:true
-            };
+            return onFetchUser(state,action);
         case FETCH_USER_FINISHED:
-            return {
-                ...state,
-                data:action.data.map((item,index)=>{
-                    return{
-                        key:item.id,
-                        ...item
-                    }
-                }),
-                isFetching:false
-            };
+            return onUserFetchFinished(state,action);
         case SELECT_USER:
-            return{
-                ...state,
-                selectedUserId:action.data
-            };
+            return onSelectUser(state,action);
         default:
             return state;
     }
